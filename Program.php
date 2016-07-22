@@ -6,6 +6,7 @@ include_once 'GetExchangeRatesResponse.php';
 include_once 'CurrencyPair.php';
 include_once 'Xml.php';
 include_once 'Calculation.php';
+include_once 'Write.php';
 
 $getdatas = new Data("text/xml", "USD");
 $comingdatas = $getdatas->getData();
@@ -23,6 +24,8 @@ $dizi = $xml->Parser();
 $albak = new Calculation(500,$dizi);
 $sonuc = $albak->Calculator();
 
-print_r($sonuc);
+//print_r($sonuc);
+
+Write::Printer($sonuc);
 
 ?>
