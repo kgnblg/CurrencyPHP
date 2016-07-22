@@ -31,7 +31,7 @@ class Calculation
             $getmoney = $getcurrencypairs->CurrencyPairs[$i]->getCounterCurrency();
             $getrate = $getcurrencypairs->CurrencyPairs[$i]->getRate();
 
-            $calculationresults[$i] = $getmoney." ".$getrate*$this->moneyamount;
+            $calculationresults[$i] = $getmoney." ".(float)$getrate*(float)$this->moneyamount;
         }
 
         return $calculationresults;
