@@ -7,8 +7,11 @@ include_once 'CurrencyPair.php';
 include_once 'Xml.php';
 include_once 'Calculation.php';
 include_once 'Write.php';
+include_once 'Exchange.php';
 
-$getdatas = new Data("text/xml", "USD");
+$exchange = new Exchange(500, "USD");
+
+$getdatas = new Data("text/xml", $exchange->getCurrencyname());
 $comingdatas = $getdatas->getData();
 /*
  * JSON
@@ -19,13 +22,13 @@ $dizi = $jsontest->Parser();
 */
 
 $xml = new Xml($comingdatas);
-$dizi = $xml->Parser();
+$list = $xml->Parser();
 
-$albak = new Calculation(500,$dizi);
-$sonuc = $albak->Calculator();
+$calculate = new Calculation($exchange->getMoneyvalue(), $list);
+$calculateresult = $calculate->Calculator();
 
 //print_r($sonuc);
 
-Write::Printer($sonuc);
+Write::Printer($calculateresult);
 
 ?>
